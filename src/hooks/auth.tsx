@@ -25,8 +25,8 @@ const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 
 const AuthProvider: React.FC = ({ children }) => {
   const [data, setData] = useState<AuthState>(() => {
-    const token = localStorage.getItem('@GoBarber:Token');
-    const user = localStorage.getItem('@GoBarber:User');
+    const token = localStorage.getItem('@Fixar:Token');
+    const user = localStorage.getItem('@Fixar:User');
 
     if (token && user) {
       return { token, user: JSON.parse(user) };
@@ -43,15 +43,15 @@ const AuthProvider: React.FC = ({ children }) => {
 
     const { token, user } = response.data;
 
-    localStorage.setItem('@GoBarber:Token', token);
-    localStorage.setItem('@GoBarber:User', JSON.stringify(user));
+    localStorage.setItem('@Fixar:Token', token);
+    localStorage.setItem('@Fixar:User', JSON.stringify(user));
 
     setData({ token, user });
   }, []);
 
   const signOut = useCallback(() => {
-    localStorage.removeItem('@GoBarber:Token');
-    localStorage.removeItem('@GoBarber:User');
+    localStorage.removeItem('@Fixar:Token');
+    localStorage.removeItem('@Fixar:User');
 
     setData({} as AuthState);
   }, []);
