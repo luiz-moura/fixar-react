@@ -31,7 +31,9 @@ const Header: React.FC = () => {
           <img src={user.avatar_url || userAvatar} alt={user.name} />
           <div>
             <span>Bem-vindo,</span>
-            <strong>{handleNameProfile()}</strong>
+            <Link to="/profile">
+              <strong>{handleNameProfile()}</strong>
+            </Link>
           </div>
         </Profile>
         <button type="button" onClick={signOut}>

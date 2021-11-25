@@ -48,8 +48,13 @@ export const Profile = styled.div`
       color: #2f3640;
     }
 
-    strong {
-      color: #2f3640;
+    a {
+      text-decoration: none;
+      color: #ff9000;
+
+      &:hover {
+        opacity: 0.6;
+      }
     }
   }
 `;

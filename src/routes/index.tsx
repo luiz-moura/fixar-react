@@ -12,6 +12,7 @@ import Category from '../pages/Category';
 import Platform from '../pages/Platform';
 import PendingCourses from '../pages/PendingCourses';
 import ApproveCourse from '../pages/ApproveCourse';
+import Profile from '../pages/Profile';
 
 import Route from './Route';
 
@@ -19,6 +20,7 @@ const Routes: React.FC = () => (
   <Switch>
     <Route path="/" exact component={SignIn} />
     <Route path="/signup" component={SignUp} />
+    <Route path="/profile" component={Profile} isPrivate />
     <Route path="/courses" component={Courses} isPrivate />
     <Route path="/course/:course_id" component={Course} isPrivate />
     <Route path="/category/:category_id" component={Category} isPrivate />
