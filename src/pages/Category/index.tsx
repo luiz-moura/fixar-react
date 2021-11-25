@@ -5,6 +5,8 @@ import { Container, Content, Courses, Section, Categories } from './styles';
 
 import Header from '../../components/Header';
 import Course from '../../components/Course';
+import Footer from '../../components/Footer';
+import Alert from '../../components/Alert';
 
 import api from '../../services/api';
 import { useToast } from '../../hooks/toast';
@@ -90,6 +92,9 @@ const CategoryPage: React.FC = () => {
                   (course) =>
                     course.active && <Course key={course.id} course={course} />,
                 )}
+                {category.courses.length < 1 && (
+                  <Alert>Nenhum curso encontrado para essa categoria</Alert>
+                )}
               </Section>
             </Courses>
             <aside>
@@ -107,6 +112,7 @@ const CategoryPage: React.FC = () => {
           </>
         )}
       </Content>
+      <Footer />
     </Container>
   );
 };

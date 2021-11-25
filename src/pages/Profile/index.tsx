@@ -9,9 +9,11 @@ import { useAuth } from '../../hooks/auth';
 import api from '../../services/api';
 
 import { useToast } from '../../hooks/toast';
+import userAvatar from '../../assets/ninja.png';
 
 import getValidationErrors from '../../utils/getValidationErrors';
 
+import Footer from '../../components/Footer';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
 
@@ -106,11 +108,11 @@ const Profile: React.FC = () => {
         addToast({
           type: 'error',
           title: 'Erro na atualização',
-          description: 'Ocorreu um erro ao ataulizar perfil, tente novamente',
+          description: 'Ocorreu um erro ao atualizar o perfil, tente novamente',
         });
       }
     },
-    [addToast, history],
+    [addToast, history, updateUser],
   );
 
   const handleAvatarChange = useCallback(
@@ -152,7 +154,7 @@ const Profile: React.FC = () => {
           onSubmit={handleSubmit}
         >
           <AvatarInput>
-            <img src={user.avatar_url} alt={user.name} />
+            <img src={user.avatar_url || userAvatar} alt={user.name} />
 
             <label htmlFor="avatar">
               <FiCamera />
@@ -189,6 +191,7 @@ const Profile: React.FC = () => {
           <Button type="submit">Confirmar mudanças</Button>
         </Form>
       </Content>
+      <Footer />
     </Container>
   );
 };

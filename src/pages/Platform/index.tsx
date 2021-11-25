@@ -5,6 +5,8 @@ import { Container, Content, Courses, Section, Platforms } from './styles';
 
 import Header from '../../components/Header';
 import Course from '../../components/Course';
+import Footer from '../../components/Footer';
+import Alert from '../../components/Alert';
 
 import api from '../../services/api';
 import { useToast } from '../../hooks/toast';
@@ -90,6 +92,9 @@ const PlatformPage: React.FC = () => {
                   (course) =>
                     course.active && <Course key={course.id} course={course} />,
                 )}
+                {platform.courses.length < 1 && (
+                  <Alert>Nenhum curso encontrado para essa plataforma</Alert>
+                )}
               </Section>
             </Courses>
             <aside>
@@ -107,6 +112,7 @@ const PlatformPage: React.FC = () => {
               )}
             </aside>
           </Content>
+          <Footer />
         </Container>
       )}
     </>

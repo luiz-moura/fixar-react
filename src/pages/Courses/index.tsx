@@ -11,7 +11,9 @@ import {
 } from './styles';
 
 import Header from '../../components/Header';
+import Footer from '../../components/Footer';
 import Course from '../../components/Course';
+import Alert from '../../components/Alert';
 
 import api from '../../services/api';
 
@@ -67,14 +69,15 @@ const CoursesPage: React.FC = () => {
       <Header />
       <Content>
         <Courses>
-          <h1>Cursos</h1>
           <p>
-            <span>Todos os cursos</span>
+            <span>Todos os cursos disponibilizado</span>
           </p>
+          <h1>Cursos</h1>
           <Section>
             {courses.map((course) => (
               <Course key={course.id} course={course} />
             ))}
+            {courses.length < 1 && <Alert>Nenhum curso publicado</Alert>}
           </Section>
         </Courses>
         <aside>
@@ -100,6 +103,7 @@ const CoursesPage: React.FC = () => {
           </Platforms>
         </aside>
       </Content>
+      <Footer />
     </Container>
   );
 };

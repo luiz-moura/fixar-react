@@ -8,6 +8,7 @@ import Course from '../../components/Course';
 import Alert from '../../components/Alert';
 
 import api from '../../services/api';
+import Footer from '../../components/Footer';
 
 interface CourseDTO {
   id: string;
@@ -38,7 +39,7 @@ const ApproveCourses: React.FC = () => {
   const [courses, setCourses] = useState<CourseDTO[]>([]);
 
   useEffect(() => {
-    api.get(`/courses?disabled=true`).then((response) => {
+    api.get(`/courses-pending`).then((response) => {
       setCourses(response.data);
     });
   }, []);
@@ -57,12 +58,18 @@ const ApproveCourses: React.FC = () => {
           </p>
           <Section>
             {courses.map((course) => (
-              <Course path="/approve-course/" key={course.id} course={course} />
+              <Course
+                path="/approve-course/"
+                key={course.id}
+                course={course}
+                rating={false}
+              />
             ))}
             {courses.length < 1 && <Alert>Nenhum curso pendente</Alert>}
           </Section>
         </Courses>
       </Content>
+      <Footer />
     </Container>
   );
 };

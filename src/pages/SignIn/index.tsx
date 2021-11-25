@@ -11,6 +11,7 @@ import getValidationErrors from '../../utils/getValidationErrors';
 
 import logoImg from '../../assets/logo.svg';
 
+import Footer from '../../components/Footer';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
 
@@ -70,37 +71,40 @@ const SignIn: React.FC = () => {
   );
 
   return (
-    <Container>
-      <Content>
-        <AnimationContainer>
-          <img src={logoImg} alt="Fixar" />
+    <>
+      <Container>
+        <Content>
+          <AnimationContainer>
+            <img src={logoImg} alt="Fixar" />
 
-          <Form ref={formRef} onSubmit={handleSubmit}>
-            <h1>Faça seu login</h1>
+            <Form ref={formRef} onSubmit={handleSubmit}>
+              <h1>Faça seu login</h1>
 
-            <Input
-              name="email"
-              icon={FiMail}
-              type="email"
-              placeholder="E-mail"
-            />
-            <Input
-              name="password"
-              icon={FiLock}
-              type="password"
-              placeholder="Senha"
-            />
+              <Input
+                name="email"
+                icon={FiMail}
+                type="email"
+                placeholder="E-mail"
+              />
+              <Input
+                name="password"
+                icon={FiLock}
+                type="password"
+                placeholder="Senha"
+              />
 
-            <Button type="submit">Entrar</Button>
-          </Form>
+              <Button type="submit">Entrar</Button>
+            </Form>
 
-          <Link to="/signup">
-            <FiLogIn />
-            Criar conta
-          </Link>
-        </AnimationContainer>
-      </Content>
-    </Container>
+            <Link to="/signup">
+              <FiLogIn />
+              Criar conta
+            </Link>
+          </AnimationContainer>
+        </Content>
+      </Container>
+      <Footer />
+    </>
   );
 };
 

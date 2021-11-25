@@ -7,6 +7,11 @@ export const Container = styled.div`
     > div {
       margin-bottom: 20px;
     }
+
+    a {
+      text-decoration: none;
+      color: #976f00;
+    }
   }
 `;
 

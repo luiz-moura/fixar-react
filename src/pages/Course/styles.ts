@@ -18,8 +18,7 @@ export const Content = styled.main`
 
   a {
     color: #ff9000;
-    text-decoration-style: wavy;
-    text-decoration-color: #f77c7c;
+    text-decoration: none;
   }
 `;
 

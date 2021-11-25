@@ -10,6 +10,7 @@ import getValidationErrors from '../../utils/getValidationErrors';
 import { Container, Content, Courses, Section, About, NoVideo } from './styles';
 
 import Header from '../../components/Header';
+import Footer from '../../components/Footer';
 import Rating from '../../components/Rating';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
@@ -25,6 +26,7 @@ interface CourseDTO {
   pricing: string;
   level: string;
   workload: string;
+  certification: string;
   about: string;
   video: string;
   rating_media: number;
@@ -182,7 +184,9 @@ const CoursePage: React.FC = () => {
                   <iframe
                     width="100%"
                     height="400px"
-                    src={course.video}
+                    src={`https://www.youtube.com/embed/${
+                      course.video.split('watch?v=')[1]
+                    }`}
                     title="YouTube video player"
                     frameBorder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -236,6 +240,9 @@ const CoursePage: React.FC = () => {
                 <li>
                   <span>Nível de conhecimento desejavel: </span> {course.level}
                 </li>
+                <li>
+                  <span>Certificação: </span> {course.certification}
+                </li>
               </ul>
               <hr />
               <div>
@@ -246,6 +253,7 @@ const CoursePage: React.FC = () => {
           </>
         )}
       </Content>
+      <Footer />
     </Container>
   );
 };
