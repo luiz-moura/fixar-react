@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { Link, useParams, useHistory } from 'react-router-dom';
-import { FiStar, FiCheckCircle } from 'react-icons/fi';
+import { FiCheckCircle } from 'react-icons/fi';
 
 import { Container, Content, Courses, Section, About, NoVideo } from './styles';
 
 import Header from '../../components/Header';
+import Footer from '../../components/Footer';
 
 import api from '../../services/api';
 import { useToast } from '../../hooks/toast';
@@ -16,6 +17,7 @@ interface CourseDTO {
   pricing: string;
   level: string;
   workload: string;
+  certification: string;
   about: string;
   video: string;
   rating_media: number;
@@ -61,7 +63,7 @@ const ApproveCourse: React.FC = () => {
 
   useEffect(() => {
     api
-      .get(`/courses/show/${course_id}?disabled=true`)
+      .get(`/courses-pending/show/${course_id}`)
       .then((response) => {
         setCourse(response.data);
       })
@@ -76,6 +78,30 @@ const ApproveCourse: React.FC = () => {
       });
   }, [course_id, addToast, history]);
 
+  const handleCourseApprove = useCallback(async () => {
+    try {
+      const data = {
+        active: true,
+      };
+
+      await api.put(`courses/${course_id}`, data);
+
+      history.push('/pending-courses');
+
+      addToast({
+        type: 'success',
+        title: 'Curso aprovado!',
+        description: 'O curso foi disponibilizado para todos usuários!',
+      });
+    } catch (err) {
+      addToast({
+        type: 'error',
+        title: 'Erro na atualização',
+        description: 'Ocorreu um erro ao aprovar o curso, tente novamente',
+      });
+    }
+  }, [course_id, history, addToast]);
+
   return (
     <Container>
       <Header />
@@ -83,13 +109,6 @@ const ApproveCourse: React.FC = () => {
         {course && (
           <>
             <Courses>
-              <p>
-                <FiStar />
-                <FiStar />
-                <FiStar />
-                <FiStar />
-                <FiStar />
-              </p>
               <h1>{course.name}</h1>
               <p>
                 <span>
@@ -105,7 +124,9 @@ const ApproveCourse: React.FC = () => {
                   <iframe
                     width="100%"
                     height="400px"
-                    src="https://www.youtube.com/embed/Ejkb_YpuHWs"
+                    src={`https://www.youtube.com/embed/${
+                      course.video.split('watch?v=')[1]
+                    }`}
                     title="YouTube video player"
                     frameBorder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -134,18 +155,22 @@ const ApproveCourse: React.FC = () => {
                 <li>
                   <span>Nível de conhecimento desejavel: </span> {course.level}
                 </li>
+                <li>
+                  <span>Certificação: </span> {course.certification}
+                </li>
               </ul>
               <hr />
               <div>
                 <span>Instrutor: </span> {course.instructor.name}
               </div>
-              <a href={course.platform.url}>
+              <button type="button" onClick={handleCourseApprove}>
                 <FiCheckCircle /> Aprovar Curso
-              </a>
+              </button>
             </About>
           </>
         )}
       </Content>
+      <Footer />
     </Container>
   );
 };

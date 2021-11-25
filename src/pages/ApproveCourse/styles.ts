@@ -18,8 +18,7 @@ export const Content = styled.main`
 
   a {
     color: #ff9000;
-    text-decoration-style: wavy;
-    text-decoration-color: #f77c7c;
+    text-decoration: none;
   }
 `;
 
@@ -198,8 +197,10 @@ export const About = styled.div`
     border-radius: 20px;
   }
 
-  a {
-    display: block;
+  button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background: #ffda79;
     padding: 15px 0 !important;
     text-align: center;
@@ -209,9 +210,14 @@ export const About = styled.div`
     font-weight: 500;
     margin-top: 30px;
     transition: background-color 0.2s;
+    border: none;
 
     &:hover {
       background: ${shade(0.2, '#ffda79')};
+    }
+
+    svg {
+      margin-right: 10px;
     }
   }
 `;
