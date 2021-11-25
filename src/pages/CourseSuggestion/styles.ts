@@ -34,7 +34,11 @@ export const AnimationContainer = styled.div`
   form {
     margin: 80px;
     width: 700px;
-    text-align: center;
+
+    h1,
+    h3 {
+      text-align: center;
+    }
 
     h1 {
       margin-bottom: 10px;
@@ -59,6 +63,11 @@ export const AnimationContainer = styled.div`
     .row {
       display: flex;
       margin-bottom: 10px;
+    }
+
+    hr {
+      margin: 20px 0;
+      border: 1px solid #f7f1e3;
     }
   }
 

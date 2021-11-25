@@ -4,7 +4,6 @@ import { Form } from '@unform/web';
 import * as Yup from 'yup';
 import { useHistory } from 'react-router-dom';
 
-import { FiFile } from 'react-icons/fi';
 import api from '../../services/api';
 
 import { useToast } from '../../hooks/toast';
@@ -19,11 +18,21 @@ import Select from '../../components/Select';
 import Textarea from '../../components/Textarea';
 
 import { Container, Content, AnimationContainer } from './styles';
+import { useAuth } from '../../hooks/auth';
 
-interface SignUpFormData {
+interface FormData {
+  category_id: string;
+  instructor_id: string;
+  platform_id: string;
   name: string;
-  email: string;
-  password: string;
+  about: string;
+  workload: string;
+  certification: string;
+  level: string;
+  url: string;
+  video: string;
+  pricing: string;
+  active?: boolean;
 }
 
 interface CategoryDTO {
@@ -40,6 +49,7 @@ const CourseSuggestion: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
   const { addToast } = useToast();
   const history = useHistory();
+  const { user } = useAuth();
 
   const [categories, setCategories] = useState<CategoryDTO[]>();
   const [instructors, setInstructors] = useState<InstructorDTO[]>();
@@ -58,30 +68,64 @@ const CourseSuggestion: React.FC = () => {
   }, []);
 
   const handleSubmit = useCallback(
-    async (data: SignUpFormData) => {
+    async (data: FormData) => {
       try {
         formRef.current?.setErrors({});
 
         const schema = Yup.object().shape({
           name: Yup.string().required('Nome obrigatório'),
-          email: Yup.string()
-            .required('E-mail é obrigatório')
-            .email('Digite um e-mail válido'),
-          password: Yup.string().min(6, 'No mínimo 6 digítos'),
+          about: Yup.string().required('Descrição é obrigatória'),
+          workload: Yup.string().required('Carga horaria é obrigatória'),
+          url: Yup.string().required('Carga horaria é obrigatória'),
+          video: Yup.string(),
         });
 
         await schema.validate(data, {
           abortEarly: false,
         });
 
-        await api.post('users', data);
+        const {
+          category_id,
+          instructor_id,
+          platform_id,
+          name,
+          about,
+          workload,
+          certification,
+          pricing,
+          url,
+          level,
+          video,
+        } = data;
 
-        history.push('/');
+        const formData = {
+          category_id,
+          instructor_id,
+          platform_id,
+          name,
+          about,
+          workload,
+          pricing,
+          certification,
+          level,
+          url,
+          video,
+          ...(user.admin
+            ? {
+                active: true,
+              }
+            : {}),
+        };
+
+        await api.post('courses', formData);
+
+        history.push('/courses');
 
         addToast({
           type: 'success',
-          title: 'Cadastro realizado!',
-          description: 'Você já pode fazer seu logon no Fixar!',
+          title: 'Cursos cadastrado com sucesso!',
+          description:
+            'Obrigado por contribuir, curso cadastrado aguardando aprovação de um administrador!',
         });
       } catch (err) {
         if (err instanceof Yup.ValidationError) {
@@ -97,7 +141,7 @@ const CourseSuggestion: React.FC = () => {
         }
       }
     },
-    [addToast, history],
+    [addToast, history, user],
   );
 
   return (
@@ -110,59 +154,63 @@ const CourseSuggestion: React.FC = () => {
             <h3>Contribuia compartilhando cursos que você gostou 🤓</h3>
 
             <Input name="name" type="text" placeholder="Nome do curso" />
-            <Textarea placeholder="Descrição do curso" name="bio" />
+            <Textarea placeholder="Descrição do curso" name="about" />
             <Input name="workload" type="text" placeholder="Carga horária" />
             <Input
               name="url"
               type="text"
               placeholder="Endereço do curso (site)"
             />
-            <Input name="pricing" type="text" placeholder="Forma de compra" />
-            <Input name="video" type="text" placeholder="Vídeo" />
             <Input
+              name="video"
+              type="text"
+              placeholder="Vídeo de apresentação do curso"
+            />
+            {/* <Input
               name="poster"
               type="file"
               icon={FiFile}
               placeholder="Imagem"
               accept=".jpg, .jpeg, .png"
-            />
+            /> */}
+            <hr />
             <div className="row">
-              <Select name="pricing">
+              <Select label="Precificação" name="pricing">
                 <option>Grátis</option>
-                <option>Assinatura</option>
-                <option>Compra</option>
+                <option>Pago</option>
+                <option>Assinatura da plataforma</option>
               </Select>
-              <Select name="pricing">
+              <Select label="Certicicação válida" name="certification">
                 <option>Com certifição</option>
                 <option>Sem certificação</option>
               </Select>
             </div>
             <div className="row">
-              <Select name="level">
+              <Select label="Nível de conhecimento desejavel" name="level">
                 <option>Básico</option>
                 <option>Intermediário</option>
                 <option>Avançado</option>
               </Select>
-              <Select name="category">
-                {categories?.map((option) => (
-                  <option key={option.id} value={option.id}>
-                    {option.name}
+              <Select label="Categoria" name="category_id">
+                {categories?.map((option1) => (
+                  <option key={option1.id} value={option1.id}>
+                    {option1.name}
                   </option>
                 ))}
               </Select>
             </div>
             <div className="row">
-              <Select name="plataforma">
-                {instructors?.map((option) => (
-                  <option key={option.id} value={option.id}>
-                    {option.name}
+              <Select label="Instrutor" name="instructor_id">
+                {instructors?.map((option2) => (
+                  <option key={option2.id} value={option2.id}>
+                    {option2.name}
                   </option>
                 ))}
               </Select>
-              <Select name="professor">
-                {platforms?.map((option) => (
-                  <option key={option.id} value={option.id}>
-                    {option.name}
+              <Select label="Plataforma" name="platform_id">
+                {platforms?.map((option3) => (
+                  <option key={option3.id} value={option3.id}>
+                    {option3.name}
                   </option>
                 ))}
               </Select>
