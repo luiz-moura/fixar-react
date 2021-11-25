@@ -6,15 +6,23 @@ export const Container = styled.div`
   background: white;
   padding: 16px 24px;
   border-radius: 10px;
-  box-shadow: teal;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.05);
+
+  h2 {
+    margin-bottom: 10px;
+  }
 
   div {
     flex: 1;
 
+    > div {
+      margin-bottom: 10px;
+    }
+
     a {
       text-decoration: none;
-      display: flex;
       color: #ff9000;
+      margin-left: auto;
 
       svg {
         margin-left: 10px;
@@ -30,22 +38,11 @@ export const Container = styled.div`
     margin-right: 24px;
   }
 
-  strong {
-    color: #2f3640;
-    font-size: 20px;
-
-    a {
-      display: block;
-    }
-  }
-
   & + div {
     margin-top: 16px;
   }
 
   span {
-    display: flex;
-    align-items: center;
     color: #2f3640;
 
     svg {
@@ -53,4 +50,9 @@ export const Container = styled.div`
       margin-right: 8px;
     }
   }
+`;
+
+export const Details = styled.div`
+  display: flex;
+  margin-top: 10px;
 `;

@@ -15,7 +15,7 @@ export const Container = styled.div<ContainerProps>`
   padding: 16px;
   border: 2px solid #f8efba;
   color: #2f3640;
-  width: 50%;
+  width: 100%;
 
   &&:nth-child(1) {
     margin-right: 10px;
@@ -53,6 +53,20 @@ export const Container = styled.div<ContainerProps>`
 
   svg {
     margin-right: 16px;
+  }
+`;
+
+export const LabelAndSelect = styled.div`
+  width: 100%;
+
+  label {
+    color: #84817a;
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  &:nth-child(2) {
+    margin-left: 10px;
   }
 `;
 

@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import { FiArrowRightCircle, FiClock } from 'react-icons/fi';
-import { Container } from './styles';
+import { Container, Details } from './styles';
 
 import Stars from '../Stars';
 
@@ -34,37 +34,50 @@ interface CategoryDTO {
 interface CourseProps {
   course: CourseDTO;
   path?: string | null;
+  rating?: boolean;
 }
 
-const Course: React.FC<CourseProps> = ({ course, path }) => {
+const Course: React.FC<CourseProps> = ({ course, path, rating }) => {
   return (
     <Container>
-      <img
+      {/* <img
         src="https://avatars.githubusercontent.com/u/57726726?v=4"
         alt={course.name}
-      />
+      /> */}
       <div>
-        <strong>
-          <Link to={`course/${course.id}`}>{course.name}</Link>
-        </strong>
-        <p>
-          <span>Plataforma:&nbsp;</span>{' '}
-          <Link to={`platform/${course.platform.id}`}>
-            {course.platform.name}
-          </Link>
-        </p>
-        <p>Instrutor:&nbsp; {course.instructor.name}</p>
-        <p>
+        <h2>
+          <Link to={`/course/${course.id}`}>{course.name}</Link>
+        </h2>
+        <div className="row">
+          Plataforma:&nbsp;{' '}
+          <strong>
+            <Link to={`/platform/${course.platform.id}`}>
+              {course.platform.name}
+            </Link>
+          </strong>
+        </div>
+        <div className="row">
+          Categoria:&nbsp;{' '}
+          <strong>
+            <Link to={`/category/${course.category.id}`}>
+              {course.category.name}
+            </Link>
+          </strong>
+        </div>
+        <div className="row">
+          Instrutor:&nbsp; <strong>{course.instructor.name}</strong>
+        </div>
+        <div className="row">
           <FiClock />
-          &nbsp;{course.workload}
-        </p>
-        <p>
-          <Stars rating={5} />
+          <strong>&nbsp;{course.workload}</strong>
+        </div>
+        <Details>
+          {rating && <Stars rating={5} />}
           <Link to={`${path || '/course/'}${course.id}`}>
             Ver detalhes
             <FiArrowRightCircle />
           </Link>
-        </p>
+        </Details>
       </div>
     </Container>
   );

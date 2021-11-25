@@ -10,15 +10,17 @@ import { IconBaseProps } from 'react-icons';
 import { FiAlertCircle } from 'react-icons/fi';
 import { useField } from '@unform/core';
 
-import { Container, Error } from './styles';
+import { Container, Error, LabelAndSelect } from './styles';
 
 interface SelectProps extends InputHTMLAttributes<HTMLSelectElement> {
   name: string;
+  label?: string;
   icon?: React.ComponentType<IconBaseProps>;
 }
 
 const Input: React.FC<SelectProps> = ({
   name,
+  label,
   icon: Icon,
   children,
   ...rest
@@ -47,24 +49,33 @@ const Input: React.FC<SelectProps> = ({
   }, [fieldName, registerField]);
 
   return (
-    <Container isErrored={!!error} isFilled={isFilled} isFocused={isFocused}>
-      {Icon && <Icon size={20} />}
-      <select
-        onFocus={handleInputFocus}
-        onBlur={handleInputBlur}
-        defaultValue={defaultValue}
-        ref={inputRef}
-        {...rest}
-      >
-        {children}
-      </select>
+    <>
+      <LabelAndSelect>
+        <label htmlFor={name}>{label}</label>
+        <Container
+          isErrored={!!error}
+          isFilled={isFilled}
+          isFocused={isFocused}
+        >
+          {Icon && <Icon size={20} />}
+          <select
+            onFocus={handleInputFocus}
+            onBlur={handleInputBlur}
+            defaultValue={defaultValue}
+            ref={inputRef}
+            {...rest}
+          >
+            {children}
+          </select>
 
-      {error && (
-        <Error title={error}>
-          <FiAlertCircle color="#c53030" size={20} />
-        </Error>
-      )}
-    </Container>
+          {error && (
+            <Error title={error}>
+              <FiAlertCircle color="#c53030" size={20} />
+            </Error>
+          )}
+        </Container>
+      </LabelAndSelect>
+    </>
   );
 };
 

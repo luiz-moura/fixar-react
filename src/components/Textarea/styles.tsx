@@ -44,7 +44,6 @@ export const Container = styled.div<ContainerProps>`
     `}
 
   textarea {
-    min-width: 100%;
     min-height: 100px;
     max-height: 200px;
 

@@ -50,7 +50,7 @@ export const Profile = styled.div`
 
     a {
       text-decoration: none;
-      color: #ff9000;
+      color: #976f00;
 
       &:hover {
         opacity: 0.6;
@@ -72,11 +72,10 @@ export const SuggestCourse = styled.div`
   a {
     color: inherit;
     text-decoration: none;
-  }
-
-  a:first-child {
-    margin-right: 15px;
     padding: 15px;
-    border-right: 1px solid;
+
+    &:nth-child(2) {
+      border-left: 1px solid;
+    }
   }
 `;

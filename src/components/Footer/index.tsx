@@ -9,7 +9,10 @@ const Footer: React.FC = () => (
       <ul>
         <li>Fixar 2021.</li>
         <li>
-          <Link to="/about">Suporte</Link>
+          <Link to="/support">Suporte</Link>
+        </li>
+        <li>
+          <Link to="/privacy">Privacidade</Link>
         </li>
       </ul>
     </FooterContent>
