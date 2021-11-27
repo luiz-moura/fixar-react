@@ -177,7 +177,7 @@ const CoursePage: React.FC = () => {
                     {course.category.name}
                   </Link>
                 </span>
-                <span>{course.name}</span>
+                <span title={course.name}>{course.name.substr(0, 30)}...</span>
               </p>
               <Section>
                 {course.video && (

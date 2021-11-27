@@ -20,7 +20,7 @@ const Header: React.FC = () => {
   return (
     <Container>
       <HeaderContent>
-        <Link to="/">
+        <Link to="/courses">
           <img src={logoImg} alt="Fixar" />
         </Link>
         <SuggestCourse>
