@@ -20,13 +20,9 @@ import { Container, Content, AnimationContainer } from './styles';
 import logoImg from '../../assets/logo.svg';
 
 interface FormData {
-  name: string;
-  about: string;
-  workload: string;
-  url: string;
-  video: string;
-  imagem: string;
-  pricing: string;
+  subject: string;
+  message: string;
+  email: string;
 }
 
 const Support: React.FC = () => {
@@ -40,7 +36,7 @@ const Support: React.FC = () => {
         formRef.current?.setErrors({});
 
         const schema = Yup.object().shape({
-          subject: Yup.string().required('Descrição é obrigatória'),
+          subject: Yup.string().required('Assunto é obrigatório'),
           message: Yup.string().required('Mensagem é obrigatória'),
           email: Yup.string().required('E-mail é obrigatório'),
         });
@@ -49,7 +45,7 @@ const Support: React.FC = () => {
           abortEarly: false,
         });
 
-        await api.post('courses', data);
+        await api.post('supports', data);
 
         history.push('/');
 
@@ -91,7 +87,6 @@ const Support: React.FC = () => {
           <Form ref={formRef} onSubmit={handleSubmit}>
             <h1>Suporte</h1>
             <h3>Diga-nos no que podemos ajudar</h3>
-
             <Input name="subject" type="text" placeholder="Digite o assunto" />
             <Textarea placeholder="Digite a mensagem" name="message" />
             <Input
@@ -99,7 +94,6 @@ const Support: React.FC = () => {
               type="email"
               placeholder="Digite o e-mail para contato"
             />
-
             <Button type="submit">Enviar</Button>
           </Form>
         </AnimationContainer>
