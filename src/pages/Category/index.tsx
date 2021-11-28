@@ -63,7 +63,7 @@ const CategoryPage: React.FC = () => {
         setCategory(response.data);
       })
       .catch(() => {
-        history.push('/courses');
+        history.push('/');
 
         addToast({
           type: 'error',
@@ -82,7 +82,7 @@ const CategoryPage: React.FC = () => {
             <Courses>
               <p>
                 <span>
-                  <Link to="/courses">Cursos</Link>
+                  <Link to="/">Cursos</Link>
                 </span>
                 <span>{category.name}</span>
               </p>

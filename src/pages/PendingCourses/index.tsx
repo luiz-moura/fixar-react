@@ -52,7 +52,7 @@ const ApproveCourses: React.FC = () => {
           <h1>Cursos pendentes</h1>
           <p>
             <span>
-              <Link to="/courses">Cursos</Link>
+              <Link to="/">Cursos</Link>
             </span>
             <span>Pendentes</span>
           </p>

@@ -14,7 +14,7 @@ const Privacy: React.FC = () => {
     <Container>
       <header>
         <div>
-          <Link to="/courses">
+          <Link to="/">
             <FiArrowLeft />
             <img src={logoImg} alt="Fixar" />
           </Link>

@@ -80,7 +80,10 @@ const SignUp: React.FC = () => {
       <Container>
         <Content>
           <AnimationContainer>
-            <img src={logoImg} alt="Fixar" />
+            <Link to="/">
+              <img src={logoImg} alt="Fixar" />
+            </Link>
+            <p>Biblioteca de cursos online</p>
 
             <Form ref={formRef} onSubmit={handleSubmit}>
               <h1>Faça seu cadastro</h1>
@@ -102,9 +105,9 @@ const SignUp: React.FC = () => {
               <Button type="submit">Cadastrar</Button>
             </Form>
 
-            <Link to="/">
+            <Link to="/signin">
               <FiArrowLeft />
-              Voltar para logon
+              Ir para o logon
             </Link>
           </AnimationContainer>
         </Content>

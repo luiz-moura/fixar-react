@@ -119,7 +119,7 @@ const CourseSuggestion: React.FC = () => {
 
         await api.post('courses', formData);
 
-        history.push('/courses');
+        history.push('/');
 
         addToast({
           type: 'success',

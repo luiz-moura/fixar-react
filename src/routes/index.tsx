@@ -20,16 +20,16 @@ import Route from './Route';
 
 const Routes: React.FC = () => (
   <Switch>
-    <Route path="/" exact component={SignIn} />
+    <Route path="/signin" component={SignIn} />
     <Route path="/signup" component={SignUp} />
     <Route path="/privacy" component={Privacy} />
     <Route path="/support" component={Support} />
 
-    <Route path="/courses" component={Courses} isPrivate />
-    <Route path="/course/:course_id" component={Course} isPrivate />
-    <Route path="/category/:category_id" component={Category} isPrivate />
-    <Route path="/platform/:platform_id" component={Platform} isPrivate />
-    <Route path="/course-suggestion" component={CourseSuggestion} isPrivate />
+    <Route path="/" exact component={Courses} />
+    <Route path="/course/:course_id" component={Course} />
+    <Route path="/category/:category_id" component={Category} />
+    <Route path="/platform/:platform_id" component={Platform} />
+    <Route path="/course-suggestion" component={CourseSuggestion} />
 
     <Route path="/profile" component={Profile} isPrivate />
     <Route path="/pending-courses" component={PendingCourses} isPrivate />

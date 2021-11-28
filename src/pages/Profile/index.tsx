@@ -88,7 +88,7 @@ const Profile: React.FC = () => {
 
         updateUser(response.data);
 
-        history.push('/courses');
+        history.push('/');
 
         addToast({
           type: 'success',
@@ -139,7 +139,7 @@ const Profile: React.FC = () => {
     <Container>
       <header>
         <div>
-          <Link to="/courses">
+          <Link to="/">
             <FiArrowLeft />
           </Link>
         </div>

@@ -68,7 +68,7 @@ const ApproveCourse: React.FC = () => {
         setCourse(response.data);
       })
       .catch(() => {
-        history.push('/courses');
+        history.push('/');
 
         addToast({
           type: 'error',
@@ -112,7 +112,7 @@ const ApproveCourse: React.FC = () => {
               <h1>{course.name}</h1>
               <p>
                 <span>
-                  <Link to="/courses">Cursos</Link>
+                  <Link to="/">Cursos</Link>
                 </span>
                 <span>
                   <Link to="/pending-courses">Pendentes</Link>

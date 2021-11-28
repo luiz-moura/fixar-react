@@ -51,7 +51,7 @@ const Support: React.FC = () => {
 
         await api.post('courses', data);
 
-        history.push('/courses');
+        history.push('/');
 
         addToast({
           type: 'success',
@@ -80,7 +80,7 @@ const Support: React.FC = () => {
     <Container>
       <header>
         <div>
-          <Link to="/courses">
+          <Link to="/">
             <FiArrowLeft />
             <img src={logoImg} alt="Fixar" />
           </Link>

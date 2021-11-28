@@ -50,7 +50,7 @@ const SignIn: React.FC = () => {
           password: data.password,
         });
 
-        history.push('/courses');
+        history.push('/');
       } catch (err) {
         if (err instanceof Yup.ValidationError) {
           const errors = getValidationErrors(err);
@@ -75,7 +75,10 @@ const SignIn: React.FC = () => {
       <Container>
         <Content>
           <AnimationContainer>
-            <img src={logoImg} alt="Fixar" />
+            <Link to="/">
+              <img src={logoImg} alt="Fixar" />
+            </Link>
+            <p>Biblioteca de cursos online</p>
 
             <Form ref={formRef} onSubmit={handleSubmit}>
               <h1>Faça seu login</h1>
@@ -98,7 +101,7 @@ const SignIn: React.FC = () => {
 
             <Link to="/signup">
               <FiLogIn />
-              Criar conta
+              Não tem uma conta? Clique aqui
             </Link>
           </AnimationContainer>
         </Content>

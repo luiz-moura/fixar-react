@@ -86,7 +86,7 @@ const CoursePage: React.FC = () => {
         setCourse(response.data);
       })
       .catch(() => {
-        history.push('/courses');
+        history.push('/');
 
         addToast({
           type: 'error',
@@ -170,7 +170,7 @@ const CoursePage: React.FC = () => {
               <h1>{course.name}</h1>
               <p>
                 <span>
-                  <Link to="/courses">Cursos</Link>
+                  <Link to="/">Cursos</Link>
                 </span>
                 <span>
                   <Link to={`/category/${course.category.id}`}>

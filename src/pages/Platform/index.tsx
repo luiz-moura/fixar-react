@@ -62,7 +62,7 @@ const PlatformPage: React.FC = () => {
         setPlatform(response.data);
       })
       .catch(() => {
-        history.push('/courses');
+        history.push('/');
 
         addToast({
           type: 'error',
@@ -81,7 +81,7 @@ const PlatformPage: React.FC = () => {
             <Courses>
               <p>
                 <span>
-                  <Link to="/courses">Cursos</Link>
+                  <Link to="/">Cursos</Link>
                 </span>
                 <span>{platform.name}</span>
               </p>

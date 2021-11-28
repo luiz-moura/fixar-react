@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 
 import { FiPower } from 'react-icons/fi';
@@ -11,34 +11,38 @@ import { useAuth } from '../../hooks/auth';
 const Header: React.FC = () => {
   const { signOut, user } = useAuth();
 
-  const handleNameProfile = useCallback(() => {
-    const firstName = user.name.split(' ')[0];
-
-    return firstName;
-  }, [user.name]);
-
   return (
     <Container>
       <HeaderContent>
-        <Link to="/courses">
+        <Link to="/">
           <img src={logoImg} alt="Fixar" />
         </Link>
-        <SuggestCourse>
-          {user.admin && <Link to="/pending-courses">Aprovar cursos</Link>}
-          <Link to="/course-suggestion">Adicionar curso</Link>
-        </SuggestCourse>
-        <Profile>
-          <img src={user.avatar_url || userAvatar} alt={user.name} />
-          <div>
-            <span>Bem-vindo,</span>
-            <Link to="/profile">
-              <strong>{handleNameProfile()}</strong>
-            </Link>
-          </div>
-        </Profile>
-        <button type="button" onClick={signOut}>
-          <FiPower />
-        </button>
+        {user && (
+          <>
+            <SuggestCourse>
+              {user.admin && <Link to="/pending-courses">Aprovar cursos</Link>}
+              <Link to="/course-suggestion">Adicionar curso</Link>
+            </SuggestCourse>
+            <Profile>
+              <img src={user.avatar_url || userAvatar} alt={user.name} />
+              <div>
+                <span>Bem-vindo,</span>
+                <Link to="/profile">
+                  <strong>{user.name.split(' ')[0]}</strong>
+                </Link>
+              </div>
+            </Profile>
+            <button type="button" onClick={signOut}>
+              <FiPower />
+            </button>
+          </>
+        )}
+        {!user && (
+          <SuggestCourse>
+            <Link to="/signin">Login</Link>
+            <Link to="/signup">Cadastro</Link>
+          </SuggestCourse>
+        )}
       </HeaderContent>
     </Container>
   );
