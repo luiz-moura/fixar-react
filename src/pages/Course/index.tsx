@@ -31,6 +31,7 @@ interface CourseDTO {
   video: string;
   rating_media: number;
   ratings: RatingDTO[];
+  url: string;
   platform: {
     id: string;
     name: string;
@@ -160,13 +161,13 @@ const CoursePage: React.FC = () => {
         {course && (
           <>
             <Courses>
-              <p>
+              {/* <p>
                 <FiStar />
                 <FiStar />
                 <FiStar />
                 <FiStar />
                 <FiStar />
-              </p>
+              </p> */}
               <h1>{course.name}</h1>
               <p>
                 <span>
@@ -205,27 +206,28 @@ const CoursePage: React.FC = () => {
                 {course.ratings.map((ratingz) => (
                   <Rating key={ratingz.id} rating={ratingz} />
                 ))}
-                {!course.ratings.find((rat) => rat.user.id === user.id) && (
-                  <Form ref={formRef} onSubmit={handleSubmit}>
-                    <h4>Avalie esse curso</h4>
-                    {/* <p>
+                {user &&
+                  !course.ratings.find((rat) => rat.user.id === user.id) && (
+                    <Form ref={formRef} onSubmit={handleSubmit}>
+                      <h4>Avalie esse curso</h4>
+                      {/* <p>
                        <FiStar onClick={handleStartChange(1)} />
                     <FiStar onClick={handleStartChange(2)} />
                     <FiStar onClick={handleStartChange(3)} />
                     <FiStar onClick={handleStartChange(4)} />
                     <FiStar onClick={handleStartChange(5)} />
                     </p> */}
-                    <Input
-                      name="comment"
-                      type="text"
-                      placeholder="Escreve aqui seu comentário"
-                    />
-                    <Button type="submit">
-                      <FiSend />
-                      &nbsp; Avaliar
-                    </Button>
-                  </Form>
-                )}
+                      <Input
+                        name="comment"
+                        type="text"
+                        placeholder="Escreve aqui seu comentário"
+                      />
+                      <Button type="submit">
+                        <FiSend />
+                        &nbsp; Avaliar
+                      </Button>
+                    </Form>
+                  )}
               </Section>
             </Courses>
             <About>
@@ -248,7 +250,9 @@ const CoursePage: React.FC = () => {
               <div>
                 <span>Instrutor: </span> {course.instructor.name}
               </div>
-              <a href={course.platform.url}>Acessar curso</a>
+              <a target="_blank" href={course.url} rel="noreferrer">
+                Acessar curso
+              </a>
             </About>
           </>
         )}
