@@ -55,6 +55,10 @@ export const Profile = styled.div`
       &:hover {
         opacity: 0.6;
       }
+
+      &:first-letter {
+        text-transform: capitalize;
+      }
     }
   }
 `;

@@ -49,7 +49,7 @@ const SignUp: React.FC = () => {
 
         await api.post('users', data);
 
-        history.push('/');
+        history.push('/signin');
 
         addToast({
           type: 'success',

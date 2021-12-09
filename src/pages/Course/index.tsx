@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef, useCallback } from 'react';
 import { Link, useParams, useHistory } from 'react-router-dom';
-import { FiStar, FiSend } from 'react-icons/fi';
+import { FiSend } from 'react-icons/fi';
 import { FormHandles } from '@unform/core';
 import { Form } from '@unform/web';
 import * as Yup from 'yup';
@@ -32,6 +32,7 @@ interface CourseDTO {
   rating_media: number;
   ratings: RatingDTO[];
   url: string;
+  name_instructor: string;
   platform: {
     id: string;
     name: string;
@@ -168,7 +169,6 @@ const CoursePage: React.FC = () => {
                 <FiStar />
                 <FiStar />
               </p> */}
-              <h1>{course.name}</h1>
               <p>
                 <span>
                   <Link to="/">Cursos</Link>
@@ -180,6 +180,7 @@ const CoursePage: React.FC = () => {
                 </span>
                 <span title={course.name}>{course.name.substr(0, 30)}...</span>
               </p>
+              <h1>{course.name}</h1>
               <Section>
                 {course.video && (
                   <iframe
@@ -202,7 +203,10 @@ const CoursePage: React.FC = () => {
                     {course.platform.name}
                   </Link>
                 </h3>
-                <h4>Avaliações {course.ratings.length}</h4>
+                <h4>
+                  {course.ratings.length}{' '}
+                  {course.ratings.length > 1 ? 'Avaliações' : 'Avaliação'}
+                </h4>
                 {course.ratings.map((ratingz) => (
                   <Rating key={ratingz.id} rating={ratingz} />
                 ))}
@@ -248,7 +252,8 @@ const CoursePage: React.FC = () => {
               </ul>
               <hr />
               <div>
-                <span>Instrutor: </span> {course.instructor.name}
+                {/* <span>Instrutor: </span> {course.instructor.name} */}
+                <span>Instrutor: </span> {course.name_instructor}
               </div>
               <a target="_blank" href={course.url} rel="noreferrer">
                 Acessar curso

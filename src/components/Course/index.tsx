@@ -13,6 +13,7 @@ interface CourseDTO {
   platform: PlatformDTO;
   category: CategoryDTO;
   rating_media: number;
+  name_instructor: string;
   instructor: {
     name: string;
   };
@@ -65,7 +66,8 @@ const Course: React.FC<CourseProps> = ({ course, path, rating }) => {
           </strong>
         </div>
         <div className="row">
-          Instrutor:&nbsp; <strong>{course.instructor.name}</strong>
+          {/* Instrutor:&nbsp; <strong>{course.instructor.name}</strong> */}
+          Instrutor:&nbsp; <strong>{course.name_instructor}</strong>
         </div>
         <div className="row">
           <FiClock />

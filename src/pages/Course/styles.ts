@@ -34,7 +34,6 @@ export const Courses = styled.div`
     margin-top: 8px;
     display: flex;
     align-items: center;
-    font-weight: 500;
 
     span {
       display: flex;
@@ -49,10 +48,14 @@ export const Courses = styled.div`
       margin: 0 8px;
     }
   }
+
+  p span {
+    font-weight: 500;
+  }
 `;
 
 export const Section = styled.section`
-  margin-top: 48px;
+  margin-top: 24px;
 
   > strong {
     color: #999591;
@@ -77,7 +80,8 @@ export const Section = styled.section`
 
 export const NoVideo = styled.div`
   width: 100%;
-  height: 400px;
+  padding: 20px 0;
+  margin-bottom: 15px;
   background: #ff9000;
   border-radius: 10px;
   font-weight: 600;

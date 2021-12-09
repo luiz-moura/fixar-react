@@ -7,12 +7,11 @@ export const Container = styled.footer`
 export const FooterContent = styled.div`
   max-width: 1120px;
   margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  text-align: center;
 
   ul {
-    display: flex;
+    display: inline-flex;
+    margin-top: 10px;
     list-style: none;
 
     & > li {

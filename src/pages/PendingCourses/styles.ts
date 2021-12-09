@@ -22,6 +22,11 @@ export const Courses = styled.div`
 
   h1 {
     font-size: 36px;
+
+    span {
+      font-size: 0.8rem;
+      vertical-align: super;
+    }
   }
 
   p {

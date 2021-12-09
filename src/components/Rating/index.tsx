@@ -3,7 +3,7 @@ import { format, parseISO } from 'date-fns';
 
 import Stars from '../Stars';
 
-import { Container } from './styles';
+import { Container, Author } from './styles';
 
 import userAvatar from '../../assets/ninja.png';
 
@@ -27,9 +27,11 @@ const Rating: React.FC<RatingProps> = ({ rating }) => {
     <Container>
       <img src={rating.user.avatar_url || userAvatar} alt={rating.user.name} />
       <div>
-        <Stars rating={5} />
-        {rating.user.name} em&nbsp;
-        {format(parseISO(rating.created_at), 'dd/MM/yyyy hh:mm')}
+        <Author>
+          {/* <Stars rating={5} /> */}
+          <span>{rating.user.name} em&nbsp;</span>
+          {format(parseISO(rating.created_at), 'dd/MM/yyyy hh:mm')}
+        </Author>
         <p>{rating.comment}</p>
       </div>
     </Container>

@@ -15,6 +15,7 @@ import ApproveCourse from '../pages/ApproveCourse';
 import Profile from '../pages/Profile';
 import Support from '../pages/Support';
 import Privacy from '../pages/Privacy';
+import SupportList from '../pages/SupportList';
 
 import Route from './Route';
 
@@ -32,6 +33,7 @@ const Routes: React.FC = () => (
     <Route path="/course-suggestion" component={CourseSuggestion} />
 
     <Route path="/profile" component={Profile} isPrivate />
+    <Route path="/support-list" component={SupportList} isPrivate />
     <Route path="/pending-courses" component={PendingCourses} isPrivate />
     <Route
       path="/approve-course/:course_id"

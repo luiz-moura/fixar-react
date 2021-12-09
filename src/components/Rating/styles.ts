@@ -10,6 +10,10 @@ export const Container = styled.div`
 
   > div {
     display: block !important;
+
+    span {
+      font-weight: 500;
+    }
   }
 
   img {
@@ -42,4 +46,8 @@ export const Container = styled.div`
       margin-right: 8px;
     }
   }
+`;
+
+export const Author = styled.div`
+  display: flex;
 `;

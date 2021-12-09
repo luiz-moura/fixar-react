@@ -51,7 +51,7 @@ const Input: React.FC<SelectProps> = ({
   return (
     <>
       <LabelAndSelect>
-        <label htmlFor={name}>{label}</label>
+        {label && <label htmlFor={name}>{label}</label>}
         <Container
           isErrored={!!error}
           isFilled={isFilled}

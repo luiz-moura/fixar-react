@@ -6,8 +6,8 @@ import { Container, FooterContent } from './styles';
 const Footer: React.FC = () => (
   <Container>
     <FooterContent>
+      <h3>Fixar 2021.</h3>
       <ul>
-        <li>Fixar 2021.</li>
         <li>
           <Link to="/support">Suporte</Link>
         </li>

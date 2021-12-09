@@ -13,6 +13,7 @@ export const Container = styled.div<ContainerProps>`
   border-radius: 10px;
   padding: 16px;
   width: 100%;
+  margin-bottom: 5px;
 
   border: 2px solid #f8efba;
   color: #2f3640;
@@ -74,5 +75,15 @@ export const Error = styled(Tooltip)`
     &::before {
       border-color: #c53030 transparent;
     }
+  }
+`;
+
+export const LabelAndSelect = styled.div`
+  width: 100%;
+
+  label {
+    color: #84817a;
+    display: block;
+    margin-bottom: 10px;
   }
 `;

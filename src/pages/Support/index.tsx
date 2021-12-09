@@ -4,6 +4,7 @@ import { Form } from '@unform/web';
 import * as Yup from 'yup';
 import { Link, useHistory } from 'react-router-dom';
 import { FiArrowLeft } from 'react-icons/fi';
+import { useAuth } from '../../hooks/auth';
 import api from '../../services/api';
 
 import { useToast } from '../../hooks/toast';
@@ -29,6 +30,12 @@ const Support: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
   const { addToast } = useToast();
   const history = useHistory();
+
+  const { user } = useAuth();
+
+  if (user) {
+    history.push('/support-list');
+  }
 
   const handleSubmit = useCallback(
     async (data: FormData) => {

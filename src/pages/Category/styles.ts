@@ -67,20 +67,60 @@ export const Section = styled.section`
 
 export const Categories = styled.div`
   ul {
-    list-style: circle;
-    padding: 0 0 0 20px;
-    margin-bottom: 10px;
-    line-height: 2rem;
-    font-weight: 500;
+    display: block;
+    margin-left: -10px;
+    padding-left: 50px;
+    margin: 20px 0;
+
+    li {
+      display: block;
+      position: relative;
+    }
+
+    li:not(:last-child) {
+      margin-bottom: 16px;
+    }
+
+    li:before {
+      content: '';
+      position: absolute;
+      top: 1.2em;
+      left: -30px;
+      margin-top: -0.9em;
+      background: linear-gradient(45deg, #f69ec4, #f9dd94);
+      height: 12px;
+      width: 12px;
+      border-radius: 50%;
+    }
   }
 `;
 
 export const Platforms = styled.div`
   ul {
-    list-style: circle;
-    padding: 0 0 0 20px;
-    margin-bottom: 10px;
-    line-height: 2rem;
-    font-weight: 500;
+    display: block;
+    margin-left: -10px;
+    padding-left: 50px;
+    margin: 20px 0;
+
+    li {
+      display: block;
+      position: relative;
+    }
+
+    li:not(:last-child) {
+      margin-bottom: 16px;
+    }
+
+    li:before {
+      content: '';
+      position: absolute;
+      top: 1.2em;
+      left: -30px;
+      margin-top: -0.9em;
+      background: linear-gradient(45deg, #f69ec4, #f9dd94);
+      height: 12px;
+      width: 12px;
+      border-radius: 50%;
+    }
   }
 `;

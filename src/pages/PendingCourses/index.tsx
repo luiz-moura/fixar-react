@@ -17,6 +17,7 @@ interface CourseDTO {
   platform: PlatformDTO;
   category: CategoryDTO;
   rating_media: number;
+  name_instructor: string;
   instructor: {
     name: string;
   };
@@ -49,7 +50,9 @@ const ApproveCourses: React.FC = () => {
       <Header />
       <Content>
         <Courses>
-          <h1>Cursos pendentes</h1>
+          <h1>
+            Cursos pendentes <span>(Não aprovados)</span>
+          </h1>
           <p>
             <span>
               <Link to="/">Cursos</Link>

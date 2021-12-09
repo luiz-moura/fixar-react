@@ -24,6 +24,7 @@ interface CourseDTO {
   rating_media: number;
   platform: PlatformDTO;
   category: CategoryDTO;
+  name_instructor: string;
   instructor: {
     name: string;
   };

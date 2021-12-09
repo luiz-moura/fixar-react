@@ -65,6 +65,13 @@ export const AnimationContainer = styled.div`
       margin-bottom: 10px;
     }
 
+    .input-select {
+      div:nth-child(2) {
+        width: 30%;
+        margin-top: 0;
+      }
+    }
+
     hr {
       margin: 20px 0;
       border: 1px solid #f7f1e3;

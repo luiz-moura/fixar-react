@@ -22,6 +22,7 @@ interface CourseDTO {
   video: string;
   rating_media: number;
   ratings: RatingDTO[];
+  name_instructor: string;
   platform: {
     id: string;
     name: string;
@@ -161,7 +162,8 @@ const ApproveCourse: React.FC = () => {
               </ul>
               <hr />
               <div>
-                <span>Instrutor: </span> {course.instructor.name}
+                {/* <span>Instrutor: </span> {course.instructor.name} */}
+                <span>Instrutor: </span> {course.name_instructor}
               </div>
               <button type="button" onClick={handleCourseApprove}>
                 <FiCheckCircle /> Aprovar Curso

@@ -22,15 +22,17 @@ import { useAuth } from '../../hooks/auth';
 
 interface FormData {
   category_id: string;
-  instructor_id: string;
+  // instructor_id: string;
   platform_id: string;
   name: string;
   about: string;
   workload: string;
+  time_type: string;
   certification: string;
   level: string;
   url: string;
   video: string;
+  name_instructor: string;
   pricing: string;
   active?: boolean;
 }
@@ -52,16 +54,16 @@ const CourseSuggestion: React.FC = () => {
   const { user } = useAuth();
 
   const [categories, setCategories] = useState<CategoryDTO[]>();
-  const [instructors, setInstructors] = useState<InstructorDTO[]>();
+  // const [instructors, setInstructors] = useState<InstructorDTO[]>();
   const [platforms, setPlatforms] = useState<InstructorDTO[]>();
 
   useEffect(() => {
     api.get(`/categories`).then((response) => {
       setCategories(response.data);
     });
-    api.get(`/instructors`).then((response) => {
-      setInstructors(response.data);
-    });
+    // api.get(`/instructors`).then((response) => {
+    //   setInstructors(response.data);
+    // });
     api.get(`/platforms`).then((response) => {
       setPlatforms(response.data);
     });
@@ -86,30 +88,33 @@ const CourseSuggestion: React.FC = () => {
 
         const {
           category_id,
-          instructor_id,
+          // instructor_id,
           platform_id,
           name,
           about,
           workload,
+          time_type,
           certification,
           pricing,
           url,
           level,
           video,
+          name_instructor,
         } = data;
 
         const formData = {
           category_id,
-          instructor_id,
+          // instructor_id,
           platform_id,
           name,
           about,
-          workload,
+          workload: `${workload} ${time_type}`,
           pricing,
           certification,
           level,
           url,
           video,
+          name_instructor,
           ...(user.admin
             ? {
                 active: true,
@@ -152,10 +157,9 @@ const CourseSuggestion: React.FC = () => {
           <Form ref={formRef} onSubmit={handleSubmit}>
             <h1>Adicione o curso desejado</h1>
             <h3>Contribuia compartilhando cursos que você gostou 🤓</h3>
-
+            <hr />
             <Input name="name" type="text" placeholder="Nome do curso" />
             <Textarea placeholder="Descrição do curso" name="about" />
-            <Input name="workload" type="text" placeholder="Carga horária" />
             <Input
               name="url"
               type="text"
@@ -166,14 +170,14 @@ const CourseSuggestion: React.FC = () => {
               type="text"
               placeholder="Vídeo de apresentação do curso"
             />
-            {/* <Input
-              name="poster"
-              type="file"
-              icon={FiFile}
-              placeholder="Imagem"
-              accept=".jpg, .jpeg, .png"
-            /> */}
             <hr />
+            <div className="row input-select">
+              <Input name="workload" type="text" placeholder="Carga horária" />
+              <Select name="time_type">
+                <option>Hora(s)</option>
+                <option>Minuto(s)</option>
+              </Select>
+            </div>
             <div className="row">
               <Select label="Precificação" name="pricing">
                 <option>Grátis</option>
@@ -200,13 +204,19 @@ const CourseSuggestion: React.FC = () => {
               </Select>
             </div>
             <div className="row">
-              <Select label="Instrutor" name="instructor_id">
+              {/* <Select label="Instrutor" name="instructor_id">
                 {instructors?.map((option2) => (
                   <option key={option2.id} value={option2.id}>
                     {option2.name}
                   </option>
                 ))}
-              </Select>
+              </Select> */}
+              <Input
+                label="Instrutor"
+                name="name_instructor"
+                type="text"
+                placeholder="Instrutor"
+              />
               <Select label="Plataforma" name="platform_id">
                 {platforms?.map((option3) => (
                   <option key={option3.id} value={option3.id}>
